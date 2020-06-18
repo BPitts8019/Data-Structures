@@ -19,7 +19,32 @@ class LinkedList:
     def __len__(self):
         return self.size
 
-    def prepend(self, value):
+    def get_max(self):
+        rtnVal = None
+
+        if self.head != None:
+            cur_node = self.head
+            rtnVal = cur_node.value
+            while cur_node != None:
+                if cur_node.value >= rtnVal:
+                    rtnVal = cur_node.value
+
+                cur_node = cur_node.next_node
+
+        return rtnVal
+
+    def contains(self, target_val) -> bool:
+        if self.head != None:
+            cur_node = self.head
+            while cur_node != None:
+                if cur_node.value == target_val:
+                    return True
+
+                cur_node = cur_node.next_node
+
+        return False
+
+    def add_to_head(self, value):
         new_node = Node(value)
 
         if self.head == None:
@@ -31,7 +56,7 @@ class LinkedList:
 
         self.size += 1
 
-    def append(self, value):
+    def add_to_tail(self, value):
         new_node = Node(value)
 
         if self.tail == None:
@@ -43,16 +68,19 @@ class LinkedList:
 
         self.size += 1
 
-    def insert(self):
-        pass
+    def remove_head(self):
+        return self._pop(True) if self.head != None else None
 
-    def pop(self, remove_head: bool):
+    def _pop(self, remove_head: bool):
         if remove_head:
             rtnVal = self.head.value
             self.head = self._delete(self.head.value, self.head)
         else:
             rtnVal = self.tail.value
             self.tail = self._delete(self.head.tail, self.tail)
+
+        if self.head == None:
+            self.tail = None
 
         return rtnVal
 
