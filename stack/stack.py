@@ -10,8 +10,8 @@ return elements in Last In First Out order.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
 
-   The difference was minimal as the Linked list was designed to act very 
-   similar to a list. However, the implementation of the Linked List too
+   There is no real differenc as the Linked list was designed to act very 
+   similar to a list. However, the implementation of the Linked List took
    several iterations to get correct.
 """
 
