@@ -28,14 +28,14 @@ class Stack:
         return self.size
 
     def push(self, value):
-        self.storage.prepend(value)
+        self.storage.add_to_head(value)
         self.size = len(self.storage)
 
     def pop(self):
         rtnVal = None
 
         if (self.size > 0):
-            rtnVal = self.storage.pop(True)
+            rtnVal = self.storage.remove_head()
             self.size = len(self.storage)
 
         return rtnVal
