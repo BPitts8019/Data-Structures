@@ -84,17 +84,12 @@ class LinkedList:
         self.size += 1
 
     def remove_head(self):
-        return self._pop(True) if self.head != None else None
+        if self.head is None:
+            return None
 
-    def _pop(self, remove_head: bool):
-        if remove_head:
-            rtnVal = self.head.value
-            self.head = self._delete(self.head.value, self.head)
-        else:
-            rtnVal = self.tail.value
-            self.tail = self._delete(self.head.tail, self.tail)
-
-        if self.head == None:
+        rtnVal = self.head.value
+        self.head = self._delete(self.head.value, self.head)
+        if self.head is None:
             self.tail = None
 
         return rtnVal
