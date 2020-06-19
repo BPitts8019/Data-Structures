@@ -14,7 +14,13 @@ class LinkedList:
         self.size: int = 0
 
     def __repr__(self):
-        return f"LinkedList: [Head: {self.head.value}, Tail: {self.tail.value}]"
+        output = "LinkedList: [ "
+        cur_node = self.head
+        while cur_node is not None:
+            output += f"{cur_node.value} -> "
+            cur_node = cur_node.next_node
+
+        return output + "None ]"
 
     def __str__(self):
         output = ""
