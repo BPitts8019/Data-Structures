@@ -40,10 +40,8 @@ class ListNode:
     def delete(self):
         if self.prev:
             self.prev.next = self.next
-            self.prev = None
         if self.next:
             self.next.prev = self.prev
-            self.next = None
 
 
 """Our doubly-linked list class. It holds references to
@@ -136,7 +134,7 @@ class DoublyLinkedList:
     def remove_from_tail(self):
         rtn_node = self.tail
         if rtn_node:
-            self.tail = rtn_node.next
+            self.tail = rtn_node.prev
             rtn_node.delete()
             self.length -= 1
 
@@ -173,23 +171,23 @@ class DoublyLinkedList:
     the node was the head or the tail"""
 
     def delete(self, node):
-        pass
+        if node.prev is None:
+            self.head = node.next
+        if node.next is None:
+            self.tail = node.prev
+
+        node.delete()
+        self.length -= 1
 
     """Returns the highest value currently in the list"""
 
     def get_max(self):
-        pass
+        cur_node = self.head
 
+        max_val = cur_node.value
+        while cur_node.next:
+            if cur_node.next.value > max_val:
+                max_val = cur_node.next.value
+            cur_node = cur_node.next
 
-test_list = DoublyLinkedList(ListNode(1))
-print(test_list)
-test_list.add_to_head(40)
-print(test_list)
-test_list.add_to_head(12)
-print(test_list)
-test_list.add_to_head(80)
-print(test_list)
-test_list.add_to_head(63)
-print(test_list)
-test_list.move_to_front(test_list.tail)
-print(test_list)
+        return max_val
