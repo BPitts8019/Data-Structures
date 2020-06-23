@@ -101,13 +101,7 @@ class DoublyLinkedList:
 
     def remove_from_head(self):
         rtn_node = self.head
-        if rtn_node:
-            self.head = rtn_node.next
-            rtn_node.delete()
-            self.length -= 1
-
-            if self.head is None:
-                self.tail = None
+        self.delete(rtn_node)
 
         return rtn_node.value if rtn_node else None
 
@@ -133,13 +127,7 @@ class DoublyLinkedList:
 
     def remove_from_tail(self):
         rtn_node = self.tail
-        if rtn_node:
-            self.tail = rtn_node.prev
-            rtn_node.delete()
-            self.length -= 1
-
-            if self.tail is None:
-                self.head = None
+        self.delete(rtn_node)
 
         return rtn_node.value if rtn_node else None
 
@@ -171,6 +159,9 @@ class DoublyLinkedList:
     the node was the head or the tail"""
 
     def delete(self, node):
+        if node is None:
+            return
+
         if node.prev is None:
             self.head = node.next
         if node.next is None:
