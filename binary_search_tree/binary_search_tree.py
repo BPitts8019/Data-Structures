@@ -20,14 +20,21 @@ class BSTNode:
     # Insert the given value into the tree
     def insert(self, value):
         # if new value <= self.value, proceed with left tree
-        # if left tree is None, set left tree to a node with new value
-        # otherwise, tell left tree to insert the new value
-
+        if value < self.value:
+            # if left tree is None, set left tree to a node with new value
+            if self.left is None:
+                self.left = BSTNode(value)
+            else:
+                # otherwise, tell left tree to insert the new value
+                self.left.insert(value)
         # if new value > self.value, proceed with right tree
-        # if right tree is None, set right tree to a node with new value
-        # otherwise, tell right tree to insert the new value
-
-        pass
+        else:
+            # if right tree is None, set right tree to a node with new value
+            if self.right is None:
+                self.right = BSTNode(value)
+            else:
+                # otherwise, tell right tree to insert the new value
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
