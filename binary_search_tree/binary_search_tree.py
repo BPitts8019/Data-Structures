@@ -10,6 +10,8 @@ This part of the project comprises two days:
    on the BSTNode class.
 """
 
+from queue import Queue
+
 
 class BSTNode:
     def __init__(self, value):
@@ -79,7 +81,15 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        bft_queue = Queue()
+        bft_queue.enqueue(node)
+        while len(bft_queue) > 0:
+            cur_node = bft_queue.dequeue()
+            print(cur_node.value)
+            if cur_node.left:
+                bft_queue.enqueue(cur_node.left)
+            if cur_node.right:
+                bft_queue.enqueue(cur_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
