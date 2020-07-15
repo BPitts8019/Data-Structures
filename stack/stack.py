@@ -9,17 +9,55 @@ return elements in Last In First Out order.
    Make sure the Stack tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
+
+   There is no real differenc as the Linked list was designed to act very 
+   similar to a list. However, the implementation of the Linked List took
+   several iterations to get correct.
 """
+
+from linked_list import LinkedList
+# Stack implemented with a Custom Linked List
+
+
 class Stack:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = LinkedList()
 
     def __len__(self):
-        pass
+        return self.size
 
     def push(self, value):
-        pass
+        self.storage.add_to_head(value)
+        self.size = len(self.storage)
 
     def pop(self):
-        pass
+        rtnVal = None
+
+        if (self.size > 0):
+            rtnVal = self.storage.remove_head()
+            self.size = len(self.storage)
+
+        return rtnVal
+
+# Stack implemented with a Python list
+# class Stack:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = []
+
+#     def __len__(self):
+#         return self.size
+
+#     def push(self, value):
+#         self.storage.insert(0, value)
+#         self.size = len(self.storage)
+
+#     def pop(self):
+#         rtnVal = None
+
+#         if (self.size > 0):
+#             rtnVal = self.storage.pop(0)
+#             self.size = len(self.storage)
+
+#         return rtnVal
